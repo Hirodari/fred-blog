@@ -1,0 +1,21 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+#logo {
+  color: #c3c6c9
+}
+
+.navbar {
+  background-color: #09419c
+}
+
+.center {
+  text-align: center;
+  color: white
+}
+
+.jumbotron {
+  margin-top: 20px;
+  background-image:asset-url('background.jpeg');
+  background-size: cover;
+  height: 500px;
+}

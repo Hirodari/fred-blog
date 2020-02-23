@@ -1,0 +1,21 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |usr| %>
+    <tr>
+      <td><%= usr.username%></td>
+      <td><%= usr.email %></td>
+      <td><%= link_to 'Edit', edit_user_path(usr.id),class:'btn btn-outline-primary' %>
+          <%= link_to 'Show',user_path(usr.id), class:'btn btn-outline-success'%>
+          <%= link_to 'Delete', user_path(usr),class:'btn btn-outline-danger',
+      method: :delete, data: {confirm: 'are you sure you want to delete:'} %><br></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
-<h2 align='center'>Name: <%= @user.username %></h2>
-
-  <h4><strong>Email:</strong></h4>
-    <hr>
-    <%= @user.email %>
+<h1 align='center'>Welcome to <%= @user.username %>'s page'</h1>
+<div align="center">
+  <%= gravatar_for @user, size: 150 %>
+</div><br>
+<h4 align='center'><%= @user.username %>'s article</h4>
+<%= render 'articles/article', obj: @user.articles %>

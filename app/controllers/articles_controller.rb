@@ -25,6 +25,8 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    debugger
+    @article.user = User.first
   end
 
   def update

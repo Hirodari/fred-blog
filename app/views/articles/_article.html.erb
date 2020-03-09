@@ -17,10 +17,14 @@
                    <%= time_ago_in_words(art.created_at) %> <br>
                    last updated: <%= time_ago_in_words(art.updated_at) %></small></td>
       </div>
-      <td><%= link_to 'Edit', edit_article_path(art.id),class:'btn btn-outline-primary' %>
-          <%= link_to 'Show',article_path(art.id), class:'btn btn-outline-success'%>
-          <%= link_to 'Delete', article_path(art),class:'btn btn-outline-danger',
-      method: :delete, data: {confirm: 'are you sure you want to delete:'} %><br></td>
+      <% if logged_in? && (current_user == art.user || current_user.admin?) %>
+          <td><%= link_to 'Edit', edit_article_path(art.id),class:'btn btn-outline-primary' %>
+              <%= link_to 'Show',article_path(art.id), class:'btn btn-outline-success'%>
+
+              <%= link_to 'Delete', article_path(art),class:'btn btn-outline-danger',
+            method: :delete, data: {confirm: 'are you sure you want to delete:'} %><br></td>
+
+      <% end %>
     </tr>
     <% end %>
   </tbody>

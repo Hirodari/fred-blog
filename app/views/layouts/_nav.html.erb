@@ -5,28 +5,54 @@
 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<ul class="navbar-nav mr-auto">
-  <li class="nav-item active">
-    <%= link_to 'Articles', articles_path, class:"navbar-brand", id:"logo" %>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown," role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Actions
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a><%= link_to 'New article', new_article_path, class:"dropdown-item" %></a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Something else here</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Articles', articles_path, class:"navbar-brand", id:"logo" %>
+      </li>
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown,"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a><%= link_to 'New article', new_article_path, class:"dropdown-item" %></a>
+            <a class="dropdown-item" href="#">########</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">########</a>
+          </div>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to 'Users', users_path, class:"nav-link enabled" %>
+        <!--<a class="nav-link disabled" href="#" tabindex="-1"
+         aria-disabled="true">Users</a>-->
+      </li>
+    </ul>
+<form class="form-inline">
+  <% if logged_in? %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown, profit"
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Your Profile <%= "Admin" if current_user.admin? %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a><%= link_to 'Edit your profile', edit_user_path(current_user), class:"dropdown-item" %></a>
+            <a><%= link_to 'View your profile', user_path(current_user), class:"dropdown-item" %></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
     </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-  </li>
-</ul>
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+     <button class="btn btn-info my-2 my-sm-0" type="submit">
+     <%= link_to'Logout', logout_path, method: :delete, id:"log" %></button>
+  <% else %>
+      <button class="btn btn-info my-2 my-sm-0" type="submit">
+      <%= link_to'Log in', login_path, id:"log" %></button>
+  <% end %>
+ </form>
 </div>
 </nav>

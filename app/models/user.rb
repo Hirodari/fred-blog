@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   before_save { self.email = email.downcase }
 
@@ -15,5 +15,5 @@ class User < ApplicationRecord
              length: { maximum: 105 }, presence: true
 
   has_secure_password
-  
+
 end

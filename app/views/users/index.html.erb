@@ -1,20 +1,28 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
+      <th scope="col">Avatar</th>
       <th scope="col">Username</th>
       <th scope="col">Email</th>
+      <th scope="col"># of Articles</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |usr| %>
     <tr>
-      <td><%= usr.username%></td>
-      <td><%= usr.email %></td>
-      <td><%= link_to 'Edit', edit_user_path(usr.id),class:'btn btn-outline-primary' %>
-          <%= link_to 'Show',user_path(usr.id), class:'btn btn-outline-success'%>
-          <%= link_to 'Delete', user_path(usr),class:'btn btn-outline-danger',
-      method: :delete, data: {confirm: 'are you sure you want to delete:'} %><br></td>
+      <td><%= link_to gravatar_for(usr), user_path(usr) %>
+      <td class="list-table"><%= link_to usr.username, user_path(usr) %> </td>
+        <td class="list-table" ><%= usr.email %></td>
+        <td class="list-table" ><%= pluralize(usr.articles.count, 'Article') %></td>
+        <% if logged_in? && current_user.admin? %>
+          <td class="list-table"><%= link_to 'Edit', edit_user_path(usr.id),class:'btn btn-outline-primary' %>
+              <%= link_to 'Show',user_path(usr.id), class:'btn btn-outline-success'%>
+
+                <%= link_to 'Delete', user_path(usr),class:'btn btn-outline-danger',
+                    method: :delete, data: {confirm: 'are you sure you want to delete:'} %><br></td>
+        
+        <% end %>
     </tr>
     <% end %>
   </tbody>
